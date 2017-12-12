@@ -14,6 +14,6 @@ fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }
 
-fun Log(msg: String) {
-    Log.d("Gank", msg)
+fun Loge(msg: String) {
+    Log.e("Gank",msg)
 }

@@ -11,7 +11,7 @@ import com.fynnjason.kotlingank.adapter.ContentAdapter
 import com.fynnjason.kotlingank.api.Request
 import com.fynnjason.kotlingank.beans.GankBean
 import com.fynnjason.kotlingank.beans.GankListBean
-import com.fynnjason.kotlingank.extensions.Log
+import com.fynnjason.kotlingank.extensions.Loge
 import com.fynnjason.kotlingank.extensions.inflate
 import com.google.gson.Gson
 import com.lzy.okgo.callback.StringCallback
@@ -34,11 +34,13 @@ class ContentFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Loge("onCreateView")
         return container?.inflate(R.layout.fragment_content)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Loge("onViewCreated")
         initView()
         Request().getData(mType, mPage, contentCallBack)
     }
@@ -57,10 +59,9 @@ class ContentFragment : Fragment() {
                 mDatas.addAll(bean.results)
                 mAdapter.notifyDataSetChanged()
             } catch (e: Exception) {
-                Log(e.toString())
+                Loge(e.toString())
             }
         }
     }
-
 
 }
