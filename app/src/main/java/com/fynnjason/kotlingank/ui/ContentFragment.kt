@@ -1,5 +1,7 @@
 package com.fynnjason.kotlingank.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -34,15 +36,28 @@ class ContentFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Loge("onCreateView")
+        Loge("onCreateView $mType")
         return container?.inflate(R.layout.fragment_content)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Loge("onViewCreated")
+        Loge("onViewCreated $mType")
         initView()
-        Request().getData(mType, mPage, contentCallBack)
+        initListener()
+        if (mDatas.size == 0) {
+            Request().getData(mType, mPage, contentCallBack)
+        }
+    }
+
+    private fun initListener() {
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            val i = Intent()
+            i.setAction("android.intent.action.VIEW")
+            val url = Uri.parse(mAdapter.data[position].url)
+            i.setData(url)
+            startActivity(i)
+        }
     }
 
     private fun initView() {
@@ -54,6 +69,7 @@ class ContentFragment : Fragment() {
     private val contentCallBack = object : StringCallback() {
         override fun onSuccess(response: Response<String>?) {
             val json = response?.body()
+            Loge(json.toString())
             try {
                 val bean = Gson().fromJson(json, GankListBean::class.java)
                 mDatas.addAll(bean.results)
