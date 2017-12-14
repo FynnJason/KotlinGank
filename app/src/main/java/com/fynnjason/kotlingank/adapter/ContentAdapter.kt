@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.fynnjason.kotlingank.R
 import com.fynnjason.kotlingank.beans.GankBean
+import com.fynnjason.kotlingank.config.Values
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic
 
@@ -24,25 +25,25 @@ class ContentAdapter(layoutResId: Int, data: MutableList<GankBean>?) : BaseQuick
         //判断icon类型
         val icon = helper?.getView<ImageView>(R.id.iv_type)
         when (item?.type) {
-            "all" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.ALL -> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_view_comfy))
-            "Android" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.ANDROID -> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_android))
-            "iOS" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.IOS -> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_apple))
-            "前端" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.FRONT_END-> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_language_javascript))
-            "休息视频" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.REST_VIDEO -> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_collection_video))
-            "拓展资源" -> icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.EXPAND_RESOURSE -> icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_view_module))
-            "瞎推荐" ->icon?.setImageDrawable(IconicsDrawable(mContext)
+            Values.CASUAL_RECOMMEND ->icon?.setImageDrawable(IconicsDrawable(mContext)
                     .color(mContext.resources.getColor(R.color.colorAccent))
                     .icon(MaterialDesignIconic.Icon.gmi_view_day))
         }
