@@ -35,7 +35,7 @@ class App : Application() {
         //初始化
         OkGo.getInstance().init(this)
                 .setOkHttpClient(builder.build())
-                .setCacheMode(CacheMode.NO_CACHE) //全局统一缓存模式，默认不使用缓存
+                .setCacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST)
                 .setCacheTime(CacheEntity.CACHE_NEVER_EXPIRE) //全局统一缓存时间，默认永不过期，可以不传
                 .setRetryCount(3) //全局统一超时重连次数，默认为三次
     }
